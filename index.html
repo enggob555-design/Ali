@@ -4,260 +4,646 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>علي البدراني | البطاقة الذكية Smart Card</title>
+    
     <meta name="description" content="البطاقة التعريفية الرقمية الذكية للسيد علي البدراني - تواصل مباشر، فصيلة الدم O+، وروابط التواصل المعتمدة">
+    <meta property="og:title" content="علي البدراني | Smart Card">
+    <meta property="og:description" content="فئة الدم: O+ | تواصل مباشر عبر الهاتف والواتساب والبريد">
+    <meta property="og:image" content="./ali_photo.jpg">
+    <meta property="og:type" content="profile">
+    <meta name="theme-color" content="#0a0a0f">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
     <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(20, 24, 38, 0.85);
-            --border-color: rgba(212, 175, 55, 0.3);
-            --gold: #d4af37;
-            --gold-light: #f3e5ab;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', 'Tajawal', sans-serif; }
-        body {
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0b0f19 70%);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .container {
-            width: 100%;
-            max-width: 420px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-        .nfc-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 14px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            font-size: 12px;
-            color: var(--gold-light);
-            font-weight: 700;
-        }
-        .profile-card {
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(12px);
-            border-radius: 24px;
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-        .avatar-box {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            border: 3px solid var(--gold);
-            overflow: hidden;
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-        }
-        .avatar-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        h1 { font-size: 24px; font-weight: 900; color: var(--text-main); margin-bottom: 4px; }
-        p.subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
-        .blood-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.4);
-            color: #fca5a5;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        .quick-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            width: 100%;
-        }
-        .btn-pill {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px;
-            border-radius: 14px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
-            text-decoration: none;
-            border: none;
-        }
-        .btn-save { background: var(--gold); color: #000; }
-        .btn-save:hover { background: #e6c547; }
-        .btn-share { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); }
-        .btn-share:hover { background: rgba(255,255,255,0.15); }
-
-        .links-list {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .link-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 18px;
-            background: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            color: #fff;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-        .link-item:hover {
-            border-color: var(--gold);
-            transform: translateY(-2px);
-        }
-        .link-info { display: flex; align-items: center; gap: 14px; }
-        .link-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-        .link-text .title { font-size: 15px; font-weight: 700; display: block; }
-        .link-text .sub { font-size: 12px; color: var(--text-muted); direction: ltr; text-align: right; display: block; }
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            background: #10b981;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            display: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-        }
+      body {
+        font-family: 'Cairo', 'Tajawal', sans-serif;
+        background-color: #08080c;
+        color: #f3f4f6;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+      .transform-style-3d {
+        transform-style: preserve-3d;
+      }
+      .backface-hidden {
+        backface-visibility: hidden;
+      }
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: #18181b;
+        border: 1px solid #f59e0b;
+        color: #fef3c7;
+        padding: 12px 24px;
+        border-radius: 9999px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        opacity: 0;
+        transition: all 0.35s ease;
+        z-index: 9999;
+        pointer-events: none;
+      }
+      .toast.show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
     </style>
 </head>
-<body>
+<body class="min-h-screen relative flex flex-col items-center py-6 px-4 selection:bg-amber-500 selection:text-black overflow-x-hidden">
 
-    <div class="container">
-        <!-- شارة NFC -->
-        <div class="nfc-badge">
-            <span>⚡ بطاقة تعريف ذكية معتمدة</span>
+    <!-- Ambient Glowing Light Backgrounds -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-96 bg-amber-500/10 blur-[130px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-0 right-0 w-80 h-80 bg-blue-500/5 blur-[120px] pointer-events-none -z-10"></div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-[420px] flex flex-col items-center">
+
+        <!-- 3D Physical Smart Card Container -->
+        <div 
+          id="cardContainer"
+          class="w-full perspective-1000 mb-6 cursor-pointer select-none"
+          onclick="toggleCardFlip()"
+        >
+          <div 
+            id="cardInner"
+            class="relative w-full aspect-[1.586/1] transition-transform duration-700 transform-style-3d shadow-2xl rounded-2xl border border-amber-400/30 bg-gradient-to-br from-[#18181f] via-[#0f0f14] to-[#08080a]"
+          >
+            <!-- ================= CARD FRONT ================= -->
+            <div class="absolute inset-0 w-full h-full rounded-2xl p-5 sm:p-6 flex flex-col justify-between overflow-hidden backface-hidden">
+              <div class="absolute top-0 right-0 left-0 h-[2.5px] bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+              
+              <!-- Top Bar: Chip & QR Direct Icon -->
+              <div class="flex items-center justify-between z-10">
+                <div class="flex items-center gap-3">
+                  <!-- Metallic Gold EMV Chip -->
+                  <div class="w-11 h-9 rounded-md bg-gradient-to-br from-amber-200 via-amber-400 to-yellow-600 p-[1px] shadow-md relative overflow-hidden">
+                    <div class="w-full h-full bg-[#caa035] rounded-[5px] grid grid-cols-3 grid-rows-3 gap-[1px] p-[2px] opacity-90">
+                      <div class="border border-amber-900/40 rounded-tl-sm"></div>
+                      <div class="border-b border-amber-900/40"></div>
+                      <div class="border border-amber-900/40 rounded-tr-sm"></div>
+                      <div class="border-r border-amber-900/40"></div>
+                      <div class="rounded-full bg-amber-200/50"></div>
+                      <div class="border-l border-amber-900/40"></div>
+                      <div class="border border-amber-900/40 rounded-bl-sm"></div>
+                      <div class="border-t border-amber-900/40"></div>
+                      <div class="border border-amber-900/40 rounded-br-sm"></div>
+                    </div>
+                  </div>
+
+                  <!-- QR Quick Code Mini on Front -->
+                  <div 
+                    onclick="event.stopPropagation(); openQRModal()"
+                    class="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-amber-400/10 border border-amber-400/30 text-amber-300 text-[10px] font-bold hover:bg-amber-400/20 transition"
+                  >
+                    <span>رمز QR</span>
+                  </div>
+                </div>
+
+                <!-- VIP / Smart Badge -->
+                <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-semibold backdrop-blur-sm">
+                  <span>✨ بطاقة تعريف ذكية</span>
+                </div>
+              </div>
+
+              <!-- Middle Section: Avatar & Info -->
+              <div class="flex items-center gap-4 z-10 my-auto">
+                <div class="relative shrink-0">
+                  <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full p-[2.5px] bg-gradient-to-tr from-amber-400 via-yellow-200 to-amber-600 shadow-lg overflow-hidden flex items-center justify-center bg-neutral-900">
+                    <img
+                      src="./ali_photo.jpg"
+                      alt="علي البدراني"
+                      class="w-full h-full object-cover object-top rounded-full"
+                      onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80'"
+                    />
+                  </div>
+                  <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-[#121216] rounded-full shadow"></span>
+                </div>
+
+                <div class="flex-1 min-w-0 text-right">
+                  <h3 class="text-xl sm:text-2xl font-black text-amber-200 tracking-tight leading-tight truncate">
+                    علي البدراني
+                  </h3>
+                  <p class="text-xs sm:text-sm text-neutral-300 font-medium truncate mt-0.5">
+                    علي يعقوب حامد البدراني
+                  </p>
+                  <div class="flex items-center gap-2 mt-1.5 flex-wrap">
+                    <span onclick="event.stopPropagation(); openBloodModal()" class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-red-950/80 border border-red-500/40 text-red-300 cursor-pointer">
+                      <span>❤️ فصيلة الدم O+</span>
+                    </span>
+                    <span class="text-[11px] text-neutral-400 font-mono" dir="ltr">
+                      07729530556
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Bar: Smart Card Number & Flip Hint -->
+              <div class="flex items-center justify-between z-10 pt-2 border-t border-white/5 text-[11px] text-neutral-400">
+                <span class="font-mono tracking-widest text-amber-400/80 uppercase">
+                  ALI • AL-BADRANI • 2026
+                </span>
+                <span class="flex items-center gap-1 text-amber-300/70 text-[10px]">
+                  <span>انقر لقلب البطاقة وعرض كود QR 🔄</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- ================= CARD BACK ================= -->
+            <div 
+              class="absolute inset-0 w-full h-full rounded-2xl p-4 sm:p-5 flex flex-col justify-between overflow-hidden backface-hidden bg-gradient-to-br from-[#121218] via-[#09090c] to-[#040406]"
+              style="transform: rotateY(180deg);"
+            >
+              <div class="w-full -mx-5 -mt-1 h-8 bg-neutral-900 border-y border-neutral-800 flex items-center justify-between px-4">
+                <span class="text-[9px] font-bold text-amber-300">امسح الكود بكاميرا الهاتف لفتح وتحميل الصفحة</span>
+                <span class="text-[9px] font-mono text-neutral-500 tracking-widest">SMART CARD</span>
+              </div>
+
+              <div class="grid grid-cols-12 gap-3 my-auto items-center">
+                <div 
+                  onclick="event.stopPropagation(); openQRModal()"
+                  class="col-span-5 flex flex-col items-center justify-center p-2 rounded-xl bg-white shadow-lg border-2 border-amber-400 hover:scale-105 transition-transform"
+                >
+                  <canvas id="cardBackQR" class="w-20 h-20 sm:w-24 sm:h-24 object-contain"></canvas>
+                  <span class="text-[8px] font-black text-black tracking-wider uppercase mt-1">
+                    امسح لتحميل الصفحة
+                  </span>
+                </div>
+
+                <div class="col-span-7 bg-neutral-900/90 border border-neutral-800 rounded-xl p-3 text-right text-xs">
+                  <div class="flex justify-between items-center text-[10px] text-neutral-400 border-b border-neutral-800 pb-1 mb-1.5">
+                    <span class="text-amber-300 font-bold">بطاقة علي البدراني</span>
+                    <span class="font-mono text-emerald-400 text-[9px]">VERIFIED</span>
+                  </div>
+                  <p class="text-[11px] text-neutral-200 truncate font-mono mb-1" dir="ltr">
+                    enggob555@gmail.com
+                  </p>
+                  <p class="text-[11px] text-neutral-300 font-mono mb-1.5" dir="ltr">
+                    07729530556
+                  </p>
+                  <div class="flex items-center gap-1 text-[10px] text-red-400 font-bold">
+                    <span>فصيلة الدم:</span>
+                    <span class="px-1.5 py-0.2 rounded bg-red-500/20 border border-red-500/40 text-red-300 font-mono">
+                      O+
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex justify-between items-center text-[10px] text-neutral-500 border-t border-neutral-800/80 pt-1">
+                <span>انقر في أي مكان لقلب البطاقة للوجه الأمامي</span>
+                <span class="text-amber-400/80">العراق 🇮🇶</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- كارد الملف الشخصي -->
-        <div class="profile-card">
-            <div class="avatar-box">
-                <img src="ali_photo.jpg" alt="علي البدراني">
-            </div>
-            <h1>علي البدراني</h1>
-            <p class="subtitle">علي يعقوب حامد البدراني</p>
+        <!-- Quick Action 3 Pills Under 3D Card -->
+        <div class="w-full grid grid-cols-3 gap-2.5 mb-6">
+          <button
+            onclick="saveContact()"
+            class="flex flex-col items-center justify-center gap-1.5 py-3 px-2 rounded-2xl bg-gradient-to-b from-amber-400/20 to-amber-500/10 border border-amber-400/30 text-amber-200 hover:from-amber-400/30 hover:to-amber-500/20 hover:border-amber-400/50 transition active:scale-95 shadow-lg"
+          >
+            <svg class="w-5 h-5 text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span class="text-xs font-bold">حفظ جهة الاتصال</span>
+          </button>
 
-            <div class="blood-group-badge">
-                <span>فئة الدم: <strong>O+</strong> (متبرع عام)</span>
-            </div>
+          <button
+            onclick="openQRModal()"
+            class="flex flex-col items-center justify-center gap-1.5 py-3 px-2 rounded-2xl bg-neutral-900/90 border border-amber-500/40 text-neutral-100 hover:bg-neutral-800 hover:border-amber-400 transition active:scale-95 shadow-lg"
+          >
+            <svg class="w-5 h-5 text-amber-400 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span class="text-xs font-bold text-amber-300">رمز QR للصفحة</span>
+          </button>
 
-            <div class="quick-actions">
-                <button class="btn-pill btn-save" onclick="saveContact()">حفظ جهة الاتصال</button>
-                <button class="btn-pill btn-share" onclick="shareCard()">مشاركة البطاقة</button>
-            </div>
+          <button
+            onclick="shareCard()"
+            class="flex flex-col items-center justify-center gap-1.5 py-3 px-2 rounded-2xl bg-neutral-900/90 border border-neutral-700/60 text-neutral-200 hover:bg-neutral-800 hover:border-neutral-600 transition active:scale-95 shadow-lg"
+          >
+            <svg class="w-5 h-5 text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span class="text-xs font-bold">مشاركة الرابط</span>
+          </button>
         </div>
 
-        <!-- أزرار التواصل -->
-        <div class="links-list">
-            <a href="tel:+9647729530556" class="link-item">
-                <div class="link-info">
-                    <div class="link-icon">📞</div>
-                    <div class="link-text">
-                        <span class="title">اتصال رئيسي</span>
-                        <span class="sub">+964 772 953 0556</span>
-                    </div>
-                </div>
-                <span>←</span>
-            </a>
-
-            <a href="tel:+9647756333616" class="link-item">
-                <div class="link-info">
-                    <div class="link-icon">📱</div>
-                    <div class="link-text">
-                        <span class="title">اتصال إضافي</span>
-                        <span class="sub">+964 775 633 3616</span>
-                    </div>
-                </div>
-                <span>←</span>
-            </a>
-
-            <a href="https://wa.me/9647729530556?text=مرحباً%20أستاذ%20علي%20البدراني،%20تواصلت%20معك%20من%20خلال%20بطاقتك%20الذكية." class="link-item" target="_blank">
-                <div class="link-info">
-                    <div class="link-icon" style="color: #25d366;">💬</div>
-                    <div class="link-text">
-                        <span class="title">محادثة واتساب</span>
-                        <span class="sub">WhatsApp Direct</span>
-                    </div>
-                </div>
-                <span>←</span>
-            </a>
+        <!-- Direct In-Page QR Banner -->
+        <div 
+          onclick="openQRModal()"
+          class="cursor-pointer w-full mb-4 p-3.5 rounded-2xl bg-neutral-900/90 border border-amber-500/30 hover:border-amber-400 transition flex items-center justify-between shadow-lg group"
+        >
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-white p-1 shadow flex items-center justify-center shrink-0 border border-amber-400">
+              <canvas id="bannerQR" class="w-full h-full object-contain"></canvas>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-black text-amber-200 block">
+                رمز QR المباشر لتحميل البطاقة 📲
+              </span>
+              <span id="bannerUrlText" class="text-[11px] text-neutral-400 truncate max-w-[220px] block font-mono" dir="ltr">
+                ...
+              </span>
+            </div>
+          </div>
+          <span class="text-xs font-bold text-amber-400 group-hover:translate-x-[-2px] transition-transform">
+            تكبير ومسح ←
+          </span>
         </div>
+
+        <!-- Action Links Section -->
+        <div class="w-full flex flex-col gap-3">
+          
+          <!-- 1. Primary Phone -->
+          <div class="relative group">
+            <a
+              href="tel:+9647729530556"
+              class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-amber-500/30 hover:border-amber-400 hover:bg-neutral-800/90 transition-all duration-300 shadow-lg group hover:-translate-y-0.5"
+            >
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-105 group-hover:bg-amber-500/20 transition-all">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="text-right">
+                  <div class="flex items-center gap-2">
+                    <span class="text-sm font-bold text-neutral-100 group-hover:text-amber-300 transition-colors">
+                      اتصال رئيسي
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-400/10 text-amber-300 font-semibold border border-amber-400/20">
+                      مباشر
+                    </span>
+                  </div>
+                  <span class="text-xs font-mono text-neutral-400 font-medium block mt-0.5" dir="ltr">
+                    07729530556
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button
+                  onclick="event.preventDefault(); event.stopPropagation(); copyText('07729530556', 'تم نسخ رقم الهاتف الرئيسي!')"
+                  class="p-2 rounded-lg bg-neutral-800 text-neutral-400 hover:text-amber-300 hover:bg-neutral-700 transition"
+                  title="نسخ الرقم"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+                <span class="text-neutral-500 group-hover:text-amber-300 group-hover:-translate-x-1 transition-all text-lg font-bold">
+                  ←
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 2. Secondary Phone -->
+          <div class="relative group">
+            <a
+              href="tel:+9647756333616"
+              class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-amber-500/20 hover:border-amber-400/60 hover:bg-neutral-800/90 transition-all duration-300 shadow-lg group hover:-translate-y-0.5"
+            >
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 group-hover:bg-amber-500/20 transition-all">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="text-right">
+                  <div class="flex items-center gap-2">
+                    <span class="text-sm font-bold text-neutral-100 group-hover:text-amber-300 transition-colors">
+                      اتصال إضافي
+                    </span>
+                  </div>
+                  <span class="text-xs font-mono text-neutral-400 font-medium block mt-0.5" dir="ltr">
+                    07756333616
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button
+                  onclick="event.preventDefault(); event.stopPropagation(); copyText('07756333616', 'تم نسخ رقم الهاتف الإضافي!')"
+                  class="p-2 rounded-lg bg-neutral-800 text-neutral-400 hover:text-amber-300 hover:bg-neutral-700 transition"
+                  title="نسخ الرقم"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+                <span class="text-neutral-500 group-hover:text-amber-300 group-hover:-translate-x-1 transition-all text-lg font-bold">
+                  ←
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 3. WhatsApp Direct -->
+          <div class="relative group">
+            <a
+              href="https://wa.me/9647729530556"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-emerald-500/30 hover:border-emerald-400 hover:bg-emerald-950/30 transition-all duration-300 shadow-lg group hover:-translate-y-0.5"
+            >
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-105 group-hover:bg-emerald-500/20 transition-all">
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </div>
+                <div class="text-right">
+                  <div class="flex items-center gap-2">
+                    <span class="text-sm font-bold text-neutral-100 group-hover:text-emerald-300 transition-colors">
+                      محادثة واتساب
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-semibold border border-emerald-500/20 flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      Online
+                    </span>
+                  </div>
+                  <span class="text-xs text-neutral-400 font-medium block mt-0.5">
+                    محادثة فورية مباشرة
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <span class="text-neutral-500 group-hover:text-emerald-300 group-hover:-translate-x-1 transition-all text-lg font-bold">
+                  ←
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 4. Facebook Profile -->
+          <div class="relative group">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-blue-500/30 hover:border-blue-400 hover:bg-blue-950/30 transition-all duration-300 shadow-lg group hover:-translate-y-0.5"
+            >
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:scale-105 group-hover:bg-blue-500/20 transition-all">
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </div>
+                <div class="text-right">
+                  <div class="flex items-center gap-2">
+                    <span class="text-sm font-bold text-neutral-100 group-hover:text-blue-300 transition-colors">
+                      حساب فيسبوك
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 font-semibold border border-blue-500/20">
+                      رسمي
+                    </span>
+                  </div>
+                  <span class="text-xs text-neutral-400 font-medium block mt-0.5">
+                    الملف الشخصي على Facebook
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <span class="text-neutral-500 group-hover:text-blue-300 group-hover:-translate-x-1 transition-all text-lg font-bold">
+                  ←
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 5. Email Contact -->
+          <div class="relative group">
+            <a
+              href="mailto:enggob555@gmail.com"
+              class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-rose-500/30 hover:border-rose-400 hover:bg-rose-950/30 transition-all duration-300 shadow-lg group hover:-translate-y-0.5"
+            >
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 group-hover:scale-105 group-hover:bg-rose-500/20 transition-all">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="text-right">
+                  <div class="flex items-center gap-2">
+                    <span class="text-sm font-bold text-neutral-100 group-hover:text-rose-300 transition-colors">
+                      البريد الإلكتروني
+                    </span>
+                  </div>
+                  <span class="text-xs font-mono text-neutral-400 font-medium block mt-0.5 truncate max-w-[200px]" dir="ltr">
+                    enggob555@gmail.com
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button
+                  onclick="event.preventDefault(); event.stopPropagation(); copyText('enggob555@gmail.com', 'تم نسخ البريد الإلكتروني!')"
+                  class="p-2 rounded-lg bg-neutral-800 text-neutral-400 hover:text-rose-300 hover:bg-neutral-700 transition"
+                  title="نسخ البريد"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+                <span class="text-neutral-500 group-hover:text-rose-300 group-hover:-translate-x-1 transition-all text-lg font-bold">
+                  ←
+                </span>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="w-full mt-8 pt-6 border-t border-neutral-800/80 flex flex-col items-center gap-2 pb-6 text-center">
+          <p class="text-xs font-bold text-amber-300">البطاقة التعريفية الذكية للسيد علي البدراني</p>
+          <p class="text-[11px] text-neutral-500">
+            تواصل مباشر • متوافقة مع جميع الهواتف الذكية وتقنية NFC
+          </p>
+        </footer>
+
+    </main>
+
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+      <div class="relative w-full max-w-md rounded-2xl bg-[#101017] border border-amber-500/30 p-6 shadow-2xl text-center text-neutral-100 flex flex-col items-center">
+        <button onclick="closeQRModal()" class="absolute top-4 left-4 p-2 rounded-xl bg-neutral-800/80 hover:bg-neutral-700 text-neutral-400 hover:text-neutral-200 transition">
+          ✕
+        </button>
+        <div class="text-amber-300 font-black text-lg mb-1">
+          📱 رمز QR الخاص بالبطاقة الذكية
+        </div>
+        <p class="text-xs text-neutral-400 mb-4">
+          امسح الكود بكاميرا أي هاتف لفتح بطاقتك الذكية فوراً
+        </p>
+
+        <div class="p-4 rounded-2xl bg-gradient-to-br from-amber-400 via-yellow-200 to-amber-600 shadow-2xl mb-4 flex flex-col items-center">
+          <div class="p-3 bg-white rounded-xl shadow-inner">
+            <canvas id="modalQRCanvas" class="w-52 h-52"></canvas>
+          </div>
+          <span class="text-[11px] font-bold text-neutral-900 mt-2 font-mono uppercase tracking-wider">
+            علي البدراني • SMART PASS
+          </span>
+        </div>
+
+        <div class="w-full mb-4 p-2.5 rounded-xl bg-neutral-900/90 border border-neutral-800 flex items-center justify-between gap-2 text-right">
+          <div class="truncate text-[11px]">
+            <span class="text-neutral-400 block text-[10px]">الرابط الموجه إليه الكود:</span>
+            <span id="modalTargetUrlText" class="font-mono text-amber-200 truncate block" dir="ltr">...</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 w-full">
+          <button onclick="downloadQRImg()" class="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-black font-black text-xs shadow-lg">
+            تحميل رمز QR
+          </button>
+          <button onclick="copyCurrentTargetUrl()" class="py-3 px-4 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-bold border border-neutral-700">
+            نسخ الرابط
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div id="toast" class="toast">تم النسخ بنجاح</div>
+    <!-- Blood Info Modal -->
+    <div id="bloodModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+      <div class="relative w-full max-w-sm rounded-2xl bg-[#121218] border border-red-500/40 p-6 shadow-2xl text-center text-neutral-100 flex flex-col items-center">
+        <button onclick="closeBloodModal()" class="absolute top-4 left-4 p-2 rounded-xl bg-neutral-800 text-neutral-400 hover:text-neutral-200">
+          ✕
+        </button>
+        <div class="w-14 h-14 rounded-full bg-red-500/20 border-2 border-red-500/40 flex items-center justify-center text-2xl text-red-400 mb-3">
+          🩸
+        </div>
+        <h3 class="text-lg font-black text-red-300 mb-1">فصيلة الدم الطارئة</h3>
+        <p class="text-2xl font-black text-white font-mono bg-red-950/80 border border-red-500/40 py-1.5 px-6 rounded-xl my-2">
+          O+
+        </p>
+        <p class="text-xs text-neutral-300 leading-relaxed mt-2">
+          هذه المعلومة مسجلة في ملف الطوارئ والبطاقة الذكية لتسهيل الإجراءات الطبية الفورية والتبرع بالدم.
+        </p>
+        <button onclick="closeBloodModal()" class="w-full mt-5 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-bold">
+          إغلاق
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">تم النسخ بنجاح!</div>
 
     <script>
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.innerText = msg;
-            t.style.display = 'block';
-            setTimeout(() => { t.style.display = 'none'; }, 3000);
+      let isFlipped = false;
+      
+      function getResolvedTargetUrl() {
+        if (window.location && window.location.protocol.startsWith('http')) {
+          return window.location.href.split('#')[0].split('?')[0];
         }
-        function saveContact() {
-            const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:علي البدراني\nTEL:+9647729530556\nTEL:+9647756333616\nNOTE:فصيلة الدم O+\nEND:VCARD`;
-            const blob = new Blob([vcard], { type: 'text/vcard' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Ali_AlBadrani.vcf';
-            a.click();
-            showToast('تم تحميل ملف الاتصال بنجاح');
+        return 'https://enggob555-design.github.io/Ali/';
+      }
+
+      const targetLink = getResolvedTargetUrl();
+
+      function toggleCardFlip() {
+        isFlipped = !isFlipped;
+        const inner = document.getElementById('cardInner');
+        if (inner) {
+          inner.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
         }
-        function shareCard() {
-            if (navigator.share) {
-                navigator.share({ title: 'علي البدراني - البطاقة الذكية', url: window.location.href });
-            } else {
-                navigator.clipboard.writeText(window.location.href);
-                showToast('تم نسخ رابط البطاقة');
-            }
+      }
+
+      function openQRModal() {
+        const modal = document.getElementById('qrModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        const modalText = document.getElementById('modalTargetUrlText');
+        if (modalText) modalText.textContent = targetLink;
+        QRCode.toCanvas(document.getElementById('modalQRCanvas'), targetLink, { width: 220, margin: 1 });
+      }
+
+      function closeQRModal() {
+        const modal = document.getElementById('qrModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      function openBloodModal() {
+        const modal = document.getElementById('bloodModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeBloodModal() {
+        const modal = document.getElementById('bloodModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      function downloadQRImg() {
+        const canvas = document.getElementById('modalQRCanvas');
+        if (canvas) {
+          const a = document.createElement('a');
+          a.download = 'علي_البدراني_QR.png';
+          a.href = canvas.toDataURL();
+          a.click();
         }
+      }
+
+      function copyCurrentTargetUrl() {
+        copyText(targetLink, 'تم نسخ رابط البطاقة!');
+      }
+
+      function saveContact() {
+        if (window.confetti) {
+          confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 }, colors: ['#d4af37', '#fcf6ba', '#ffffff', '#22c55e'] });
+        }
+        const vcard = "BEGIN:VCARD\r\nVERSION:3.0\r\nN;CHARSET=UTF-8:علي البدراني;;;;\r\nFN;CHARSET=UTF-8:علي البدراني\r\nTITLE;CHARSET=UTF-8:علي يعقوب حامد البدراني\r\nTEL;TYPE=CELL,VOICE,PREF:+9647729530556\r\nTEL;TYPE=CELL,VOICE:+9647756333616\r\nEMAIL;TYPE=INTERNET,PREF:enggob555@gmail.com\r\nNOTE;CHARSET=UTF-8:فصيلة الدم: O+\r\nEND:VCARD";
+        const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'علي_البدراني_contact.vcf');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        showToast('تم تحميل جهة الاتصال إلى هاتفك!');
+      }
+
+      function shareCard() {
+        if (navigator.share) {
+          navigator.share({
+            title: 'علي البدراني | بطاقة ذكية',
+            text: 'البطاقة التعريفية الرقمية للسيد علي البدراني - فئة الدم: O+',
+            url: targetLink
+          }).catch(() => {});
+        } else {
+          copyText(targetLink, 'تم نسخ رابط البطاقة إلى الحافظة!');
+        }
+      }
+
+      function copyText(text, msg) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(msg || 'تم النسخ بنجاح!');
+        });
+      }
+
+      function showToast(msg) {
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const bannerUrlText = document.getElementById('bannerUrlText');
+        if (bannerUrlText) {
+          bannerUrlText.textContent = targetLink;
+        }
+
+        const backQR = document.getElementById('cardBackQR');
+        if (backQR && window.QRCode) {
+          QRCode.toCanvas(backQR, targetLink, { width: 96, margin: 1 });
+        }
+        const bannerQR = document.getElementById('bannerQR');
+        if (bannerQR && window.QRCode) {
+          QRCode.toCanvas(bannerQR, targetLink, { width: 44, margin: 0 });
+        }
+      });
     </script>
 </body>
-</html>
+                </html>
