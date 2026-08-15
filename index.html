@@ -462,9 +462,13 @@
           ✕
         </button>
         <h3 class="text-lg font-black text-amber-300 mb-1">تعديل بيانات البطاقة</h3>
-        <p class="text-xs text-neutral-400 mb-4">قم بتعديل المعلومات أدناه ثم اضغط حفظ لتحديث البطاقة فوراً</p>
+        <p class="text-xs text-neutral-400 mb-4">قم بتعديل المعلومات أو رفع صورة شخصية جديدة من جهازك</p>
 
         <div class="flex flex-col gap-3.5 max-h-[60vh] overflow-y-auto pl-1">
+          <div>
+            <label class="text-xs font-bold text-neutral-300 block mb-1">تحميل صورة شخصية جديدة:</label>
+            <input id="inputAvatarFile" type="file" accept="image/*" onchange="handleImageUpload(event)" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-300 file:bg-amber-400 file:text-black file:border-0 file:rounded-lg file:py-1 file:px-3 file:text-xs file:font-bold cursor-pointer" />
+          </div>
           <div>
             <label class="text-xs font-bold text-neutral-300 block mb-1">الاسم الرئيسي:</label>
             <input id="inputFullName" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" />
@@ -491,16 +495,11 @@
             <label class="text-xs font-bold text-neutral-300 block mb-1">رابط فيسبوك:</label>
             <input id="inputFacebook" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" dir="ltr" />
           </div>
-          <div class="grid grid-cols-2 gap-2">
-            <div>
-              <label class="text-xs font-bold text-neutral-300 block mb-1">فصيلة الدم:</label>
-              <input id="inputBlood" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" />
-            </div>
-            <div>
-              <label class="text-xs font-bold text-neutral-300 block mb-1">رابط الصورة الشخصية:</label>
-              <input id="inputAvatar" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" dir="ltr" />
-            </div>
+          <div>
+            <label class="text-xs font-bold text-neutral-300 block mb-1">فصيلة الدم:</label>
+            <input id="inputBlood" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" />
           </div>
+          <input type="hidden" id="inputAvatar" />
         </div>
 
         <div class="flex items-center gap-2 mt-5 pt-3 border-t border-neutral-800">
@@ -626,6 +625,18 @@
         document.getElementById('linkEmail').href = "mailto:" + data.email;
       }
 
+      function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            document.getElementById('inputAvatar').value = e.target.result;
+            showToast('تم تحميل الصورة بنجاح!');
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
       function openEditModal() {
         const data = getCardData();
         document.getElementById('inputFullName').value = data.fullName;
@@ -636,6 +647,7 @@
         document.getElementById('inputFacebook').value = data.facebook;
         document.getElementById('inputBlood').value = data.blood;
         document.getElementById('inputAvatar').value = data.avatar;
+        document.getElementById('inputAvatarFile').value = '';
 
         const modal = document.getElementById('editModal');
         modal.classList.remove('hidden');
@@ -649,6 +661,8 @@
       }
 
       function saveEditData() {
+        const currentData = getCardData();
+        const newAvatar = document.getElementById('inputAvatar').value || currentData.avatar;
         const newData = {
           fullName: document.getElementById('inputFullName').value || defaultData.fullName,
           subtitle: document.getElementById('inputSubtitle').value || defaultData.subtitle,
@@ -657,7 +671,7 @@
           email: document.getElementById('inputEmail').value || defaultData.email,
           facebook: document.getElementById('inputFacebook').value || defaultData.facebook,
           blood: document.getElementById('inputBlood').value || defaultData.blood,
-          avatar: document.getElementById('inputAvatar').value || defaultData.avatar
+          avatar: newAvatar
         };
         localStorage.setItem('ali_card_data', JSON.stringify(newData));
         updateUI(newData);
