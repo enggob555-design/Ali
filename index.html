@@ -235,29 +235,6 @@
           </button>
         </div>
 
-        <!-- Direct In-Page QR Banner -->
-        <div 
-          onclick="openQRModal()"
-          class="cursor-pointer w-full mb-4 p-3.5 rounded-2xl bg-neutral-900/90 border border-amber-500/30 hover:border-amber-400 transition flex items-center justify-between shadow-lg group"
-        >
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-white p-1 shadow flex items-center justify-center shrink-0 border border-amber-400 overflow-hidden">
-              <img id="bannerQRImg" src="" alt="QR" class="w-full h-full object-contain">
-            </div>
-            <div class="text-right">
-              <span class="text-xs font-black text-amber-200 block">
-                رمز QR المباشر لتحميل البطاقة 📲
-              </span>
-              <span id="bannerUrlText" class="text-[11px] text-neutral-400 truncate max-w-[220px] block font-mono" dir="ltr">
-                ...
-              </span>
-            </div>
-          </div>
-          <span class="text-xs font-bold text-amber-400 group-hover:translate-x-[-2px] transition-transform">
-            تكبير ومسح ←
-          </span>
-        </div>
-
         <!-- Action Links Section -->
         <div class="w-full flex flex-col gap-3">
           
@@ -631,18 +608,9 @@
       }
 
       window.addEventListener('DOMContentLoaded', () => {
-        const bannerUrlText = document.getElementById('bannerUrlText');
-        if (bannerUrlText) {
-          bannerUrlText.textContent = targetLink;
-        }
-
-        // Load QR images securely
         const backQR = document.getElementById('cardBackQRImg');
         if (backQR) backQR.src = qrApiUrl;
-
-        const bannerQR = document.getElementById('bannerQRImg');
-        if (bannerQR) bannerQR.src = qrApiUrl;
       });
     </script>
 </body>
-    </html>
+</html>
