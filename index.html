@@ -8,7 +8,7 @@
     <meta name="description" content="البطاقة التعريفية الرقمية الذكية للسيد علي البدراني - تواصل مباشر، فصيلة الدم O+، وروابط التواصل المعتمدة">
     <meta property="og:title" content="علي البدراني | Smart Card">
     <meta property="og:description" content="فئة الدم: O+ | تواصل مباشر عبر الهاتف والواتساب والبريد">
-    <meta property="og:image" content="./ali_photo.jpg">
+    <meta property="og:image" content="./1786805937667.png">
     <meta property="og:type" content="profile">
     <meta name="theme-color" content="#0a0a0f">
     
@@ -122,10 +122,10 @@
                 <div class="relative shrink-0">
                   <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full p-[2.5px] bg-gradient-to-tr from-amber-400 via-yellow-200 to-amber-600 shadow-lg overflow-hidden flex items-center justify-center bg-neutral-900">
                     <img
-                      src="./ali_photo.jpg"
+                      src="./1786805937667.png"
                       alt="علي البدراني"
                       class="w-full h-full object-cover object-top rounded-full"
-                      onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80'"
+                      onerror="this.src='./ali_photo.jpg'"
                     />
                   </div>
                   <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-[#121216] rounded-full shadow"></span>
@@ -187,7 +187,7 @@
                     <span class="font-mono text-emerald-400 text-[9px]">VERIFIED</span>
                   </div>
                   <p class="text-[11px] text-neutral-200 truncate font-mono mb-1" dir="ltr">
-                    enggob555@gmail.com
+                    aliyakoophamedalbadran@gmail.com
                   </p>
                   <p class="text-[11px] text-neutral-300 font-mono mb-1.5" dir="ltr">
                     07729530556
@@ -378,7 +378,7 @@
           <!-- 4. Facebook Profile -->
           <div class="relative group">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/share/1EwWQCovnA/"
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-blue-500/30 hover:border-blue-400 hover:bg-blue-950/30 transition-all duration-300 shadow-lg group hover:-translate-y-0.5"
@@ -413,7 +413,7 @@
           <!-- 5. Email Contact -->
           <div class="relative group">
             <a
-              href="mailto:enggob555@gmail.com"
+              href="mailto:aliyakoophamedalbadran@gmail.com"
               class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-rose-500/30 hover:border-rose-400 hover:bg-rose-950/30 transition-all duration-300 shadow-lg group hover:-translate-y-0.5"
             >
               <div class="flex items-center gap-3.5">
@@ -427,14 +427,14 @@
                     </span>
                   </div>
                   <span class="text-xs font-mono text-neutral-400 font-medium block mt-0.5 truncate max-w-[200px]" dir="ltr">
-                    enggob555@gmail.com
+                    aliyakoophamedalbadran@gmail.com
                   </span>
                 </div>
               </div>
 
               <div class="flex items-center gap-2">
                 <button
-                  onclick="event.preventDefault(); event.stopPropagation(); copyText('enggob555@gmail.com', 'تم نسخ البريد الإلكتروني!')"
+                  onclick="event.preventDefault(); event.stopPropagation(); copyText('aliyakoophamedalbadran@gmail.com', 'تم نسخ البريد الإلكتروني!')"
                   class="p-2 rounded-lg bg-neutral-800 text-neutral-400 hover:text-rose-300 hover:bg-neutral-700 transition"
                   title="نسخ البريد"
                 >
@@ -528,7 +528,7 @@
       let isFlipped = false;
       
       function getResolvedTargetUrl() {
-        if (window.location && window.location.protocol.startsWith('http')) {
+        if (window.location && window.location.protocol.startsWith('http') && !window.location.hostname.includes('run.app')) {
           return window.location.href.split('#')[0].split('?')[0];
         }
         return 'https://enggob555-design.github.io/Ali/';
@@ -589,7 +589,7 @@
         if (window.confetti) {
           confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 }, colors: ['#d4af37', '#fcf6ba', '#ffffff', '#22c55e'] });
         }
-        const vcard = "BEGIN:VCARD\r\nVERSION:3.0\r\nN;CHARSET=UTF-8:علي البدراني;;;;\r\nFN;CHARSET=UTF-8:علي البدراني\r\nTITLE;CHARSET=UTF-8:علي يعقوب حامد البدراني\r\nTEL;TYPE=CELL,VOICE,PREF:+9647729530556\r\nTEL;TYPE=CELL,VOICE:+9647756333616\r\nEMAIL;TYPE=INTERNET,PREF:enggob555@gmail.com\r\nNOTE;CHARSET=UTF-8:فصيلة الدم: O+\r\nEND:VCARD";
+        const vcard = "BEGIN:VCARD\r\nVERSION:3.0\r\nN;CHARSET=UTF-8:علي البدراني;;;;\r\nFN;CHARSET=UTF-8:علي البدراني\r\nTITLE;CHARSET=UTF-8:علي يعقوب حامد البدراني\r\nTEL;TYPE=CELL,VOICE,PREF:+9647729530556\r\nTEL;TYPE=CELL,VOICE:+9647756333616\r\nEMAIL;TYPE=INTERNET,PREF:aliyakoophamedalbadran@gmail.com\r\nNOTE;CHARSET=UTF-8:فصيلة الدم: O+\r\nEND:VCARD";
         const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
@@ -646,4 +646,4 @@
       });
     </script>
 </body>
-                </html>
+</html>
