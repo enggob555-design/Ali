@@ -4,192 +4,259 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>علي البدراني | البطاقة الذكية Smart Card</title>
-    
     <meta name="description" content="البطاقة التعريفية الرقمية الذكية للسيد علي البدراني - تواصل مباشر، فصيلة الدم O+، وروابط التواصل المعتمدة">
-    <meta property="og:title" content="علي البدراني | Smart Card">
-    <meta property="og:description" content="فئة الدم: O+ | تواصل مباشر عبر الهاتف والواتساب والبريد">
-    <meta property="og:image" content="IMG-20260208-WA0001.jpg">
-    <meta property="og:type" content="profile">
-    <meta name="theme-color" content="#0a0a0c">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(20, 24, 38, 0.85);
+            --border-color: rgba(212, 175, 55, 0.3);
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', 'Tajawal', sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0b0f19 70%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .nfc-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+        .profile-card {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .avatar-box {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        h1 { font-size: 24px; font-weight: 900; color: var(--text-main); margin-bottom: 4px; }
+        p.subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
+        .blood-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            width: 100%;
+        }
+        .btn-pill {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            border: none;
+        }
+        .btn-save { background: var(--gold); color: #000; }
+        .btn-save:hover { background: #e6c547; }
+        .btn-share { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); }
+        .btn-share:hover { background: rgba(255,255,255,0.15); }
+
+        .links-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            color: #fff;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .link-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+        .link-info { display: flex; align-items: center; gap: 14px; }
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .link-text .title { font-size: 15px; font-weight: 700; display: block; }
+        .link-text .sub { font-size: 12px; color: var(--text-muted); direction: ltr; text-align: right; display: block; }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            background: #10b981;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
-    <div class="glow-bg glow-1"></div>
-    <div class="glow-bg glow-2"></div>
 
-    <main class="container">
-        <!-- شارة البطاقة الذكية -->
-        <div class="nfc-chip-badge">
-            <svg class="icon-nfc" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 8.32a7.43 7.43 0 0 1 0 7.36"></path>
-                <path d="M9.46 6.21a11.76 11.76 0 0 1 0 11.58"></path>
-                <path d="M12.91 4.1a15.91 15.91 0 0 1 0 15.8"></path>
-                <path d="M16.37 2a20.16 20.16 0 0 1 0 20"></path>
-            </svg>
-            <span>بطاقة تعريف ذكية معتمدة</span>
+    <div class="container">
+        <!-- شارة NFC -->
+        <div class="nfc-badge">
+            <span>⚡ بطاقة تعريف ذكية معتمدة</span>
         </div>
 
-        <!-- بطاقة الملف الشخصي -->
+        <!-- كارد الملف الشخصي -->
         <div class="profile-card">
-            <div class="profile-frame">
-                <img src="IMG-20260208-WA0001.jpg" alt="علي البدراني" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80'">
-                <div class="online-indicator" title="متاح للتواصل"></div>
+            <div class="avatar-box">
+                <img src="ali_photo.jpg" alt="علي البدراني">
             </div>
-            
-            <h1 class="name">علي البدراني</h1>
+            <h1>علي البدراني</h1>
             <p class="subtitle">علي يعقوب حامد البدراني</p>
-            
-            <div class="blood-group-badge" onclick="showToast('فصيلة الدم O+ - متبرع عام لكافة الفصائل الموجبة')">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" class="drop-icon">
-                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
-                </svg>
-                <span>فئة الدم: <strong class="type">O+</strong></span>
+
+            <div class="blood-group-badge">
+                <span>فئة الدم: <strong>O+</strong> (متبرع عام)</span>
             </div>
 
-            <!-- أزرار الإجراءات السريعة -->
             <div class="quick-actions">
-                <button class="action-pill save-contact-btn" onclick="saveContact()">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                        <polyline points="7 3 7 8 15 8"></polyline>
-                    </svg>
-                    <span>حفظ جهة الاتصال</span>
-                </button>
-                <button class="action-pill share-btn" onclick="shareCard()">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="18" cy="5" r="3"></circle>
-                        <circle cx="6" cy="12" r="3"></circle>
-                        <circle cx="18" cy="19" r="3"></circle>
-                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                    </svg>
-                    <span>مشاركة</span>
-                </button>
+                <button class="btn-pill btn-save" onclick="saveContact()">حفظ جهة الاتصال</button>
+                <button class="btn-pill btn-share" onclick="shareCard()">مشاركة البطاقة</button>
             </div>
         </div>
 
-        <!-- قائمة أزرار التواصل -->
-        <div class="links-container">
-            <!-- اتصال رئيسي -->
-            <a href="tel:+9647729530556" class="btn btn-phone">
-                <div class="btn-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
+        <!-- أزرار التواصل -->
+        <div class="links-list">
+            <a href="tel:+9647729530556" class="link-item">
+                <div class="link-info">
+                    <div class="link-icon">📞</div>
+                    <div class="link-text">
+                        <span class="title">اتصال رئيسي</span>
+                        <span class="sub">+964 772 953 0556</span>
+                    </div>
                 </div>
-                <div class="btn-text">
-                    <span class="btn-title">اتصال رئيسي</span>
-                    <span class="btn-subtitle" dir="ltr">07729530556</span>
-                </div>
-                <span class="btn-arrow">←</span>
+                <span>←</span>
             </a>
 
-            <!-- اتصال إضافي -->
-            <a href="tel:+9647756333616" class="btn btn-phone-secondary">
-                <div class="btn-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
+            <a href="tel:+9647756333616" class="link-item">
+                <div class="link-info">
+                    <div class="link-icon">📱</div>
+                    <div class="link-text">
+                        <span class="title">اتصال إضافي</span>
+                        <span class="sub">+964 775 633 3616</span>
+                    </div>
                 </div>
-                <div class="btn-text">
-                    <span class="btn-title">اتصال إضافي</span>
-                    <span class="btn-subtitle" dir="ltr">07756333616</span>
-                </div>
-                <span class="btn-arrow">←</span>
+                <span>←</span>
             </a>
 
-            <!-- واتساب -->
-            <a href="https://wa.me/9647729530556?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%B3%D8%AA%D8%A7%D8%B0%20%D8%B9%D9%84%D9%8A%20%D8%A7%D9%84%D8%A8%D8%AF%D8%B1%D8%A7%D9%86%D9%8A%D8%8C%20%D8%AA%D9%88%D8%A7%D8%B5%D9%84%D8%AA%20%D9%85%D8%B9%D9%83%20%D9%85%D9%86%20%D8%AE%D9%84%D8%A7%D9%84%20%D8%A8%D8%B7%D8%A7%D9%82%D8%AA%D9%83%20%D8%A7%D9%84%D8%B0%D9%83%D9%8A%D8%A9." class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
-                <div class="btn-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
+            <a href="https://wa.me/9647729530556?text=مرحباً%20أستاذ%20علي%20البدراني،%20تواصلت%20معك%20من%20خلال%20بطاقتك%20الذكية." class="link-item" target="_blank">
+                <div class="link-info">
+                    <div class="link-icon" style="color: #25d366;">💬</div>
+                    <div class="link-text">
+                        <span class="title">محادثة واتساب</span>
+                        <span class="sub">WhatsApp Direct</span>
+                    </div>
                 </div>
-                <div class="btn-text">
-                    <span class="btn-title">محادثة واتساب</span>
-                    <span class="btn-subtitle">WhatsApp Chat Direct</span>
-                </div>
-                <span class="btn-arrow">←</span>
-            </a>
-
-            <!-- فيسبوك -->
-            <a href="https://www.facebook.com/share/1LfUc7XFgU/" class="btn btn-facebook" target="_blank" rel="noopener noreferrer">
-                <div class="btn-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                </div>
-                <div class="btn-text">
-                    <span class="btn-title">الملف الشخصي فيسبوك</span>
-                    <span class="btn-subtitle">Facebook Profile</span>
-                </div>
-                <span class="btn-arrow">←</span>
-            </a>
-
-            <!-- البريد الإلكتروني -->
-            <a href="mailto:aliyakoophamedalbadran@gmail.com" class="btn btn-email">
-                <div class="btn-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                </div>
-                <div class="btn-text">
-                    <span class="btn-title">البريد الإلكتروني</span>
-                    <span class="btn-subtitle">aliyakoophamedalbadran@gmail.com</span>
-                </div>
-                <span class="btn-arrow">←</span>
+                <span>←</span>
             </a>
         </div>
+    </div>
 
-        <footer class="footer">
-            <p class="tagline">البطاقة الرسمية المعتمدة • Smart Profile</p>
-            <p class="copyright">© 2026 علي البدراني. جميع الحقوق محفوظة</p>
-        </footer>
-    </main>
-
-    <div id="toast" class="toast">تم النسخ بنجاح!</div>
+    <div id="toast" class="toast">تم النسخ بنجاح</div>
 
     <script>
-        function saveContact() {
-            const vcard = `BEGIN:VCARD\r\nVERSION:3.0\r\nN;CHARSET=UTF-8:علي البدراني;;;;\r\nFN;CHARSET=UTF-8:علي البدراني\r\nTITLE;CHARSET=UTF-8:علي يعقوب حامد البدراني\r\nTEL;TYPE=CELL,VOICE,PREF:+9647729530556\r\nTEL;TYPE=CELL,VOICE:+9647756333616\r\nEMAIL;TYPE=INTERNET,PREF:aliyakoophamedalbadran@gmail.com\r\nNOTE;CHARSET=UTF-8:فصيلة الدم: O+\r\nEND:VCARD`;
-            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'علي_البدراني_contact.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            showToast('تم تحميل جهة الاتصال إلى هاتفك!');
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 3000);
         }
-
+        function saveContact() {
+            const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:علي البدراني\nTEL:+9647729530556\nTEL:+9647756333616\nNOTE:فصيلة الدم O+\nEND:VCARD`;
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Ali_AlBadrani.vcf';
+            a.click();
+            showToast('تم تحميل ملف الاتصال بنجاح');
+        }
         function shareCard() {
             if (navigator.share) {
-                navigator.share({
-                    title: 'علي البدراني | بطاقة ذكية',
-                    text: 'البطاقة التعريفية الرقمية للسيد علي البدراني',
-                    url: window.location.href
-                }).catch(() => {});
+                navigator.share({ title: 'علي البدراني - البطاقة الذكية', url: window.location.href });
             } else {
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    showToast('تم نسخ رابط البطاقة إلى الحافظة!');
-                });
+                navigator.clipboard.writeText(window.location.href);
+                showToast('تم نسخ رابط البطاقة');
             }
-        }
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
         }
     </script>
 </body>
