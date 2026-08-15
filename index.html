@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>علي البدراني | البطاقة الذكية Smart Card</title>
+    <title id="pageTitle">علي البدراني | البطاقة الذكية Smart Card</title>
     
     <meta name="description" content="البطاقة التعريفية الرقمية الذكية للسيد علي البدراني - تواصل مباشر، فصيلة الدم O+، وروابط التواصل المعتمدة">
     <meta property="og:title" content="علي البدراني | Smart Card">
     <meta property="og:description" content="فئة الدم: O+ | تواصل مباشر عبر الهاتف والواتساب والبريد">
-    <meta property="og:image" content="./1786805937667.png">
+    <meta property="og:image" id="ogImageMeta" content="./1786805937667.png">
     <meta property="og:type" content="profile">
     <meta name="theme-color" content="#0a0a0f">
     
@@ -66,6 +66,17 @@
     <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-96 bg-amber-500/10 blur-[130px] pointer-events-none -z-10"></div>
     <div class="fixed bottom-0 right-0 w-80 h-80 bg-blue-500/5 blur-[120px] pointer-events-none -z-10"></div>
 
+    <!-- Top Floating Edit Button -->
+    <div class="w-full max-w-[420px] flex justify-end mb-2 px-1">
+      <button 
+        onclick="openEditModal()"
+        class="flex items-center gap-1.5 py-1.5 px-3 rounded-xl bg-neutral-900/90 border border-amber-500/40 text-amber-300 text-xs font-bold hover:bg-neutral-800 transition shadow-lg active:scale-95"
+      >
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <span>تعديل البطاقة</span>
+      </button>
+    </div>
+
     <!-- Main Container -->
     <main class="w-full max-w-[420px] flex flex-col items-center">
 
@@ -121,8 +132,9 @@
                 <div class="relative shrink-0">
                   <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full p-[2.5px] bg-gradient-to-tr from-amber-400 via-yellow-200 to-amber-600 shadow-lg overflow-hidden flex items-center justify-center bg-neutral-900">
                     <img
+                      id="cardAvatarImg"
                       src="./1786805937667.png"
-                      alt="علي البدراني"
+                      alt="الصورة الشخصية"
                       class="w-full h-full object-cover object-top rounded-full"
                       onerror="this.src='./ali_photo.jpg'"
                     />
@@ -131,17 +143,17 @@
                 </div>
 
                 <div class="flex-1 min-w-0 text-right">
-                  <h3 class="text-xl sm:text-2xl font-black text-amber-200 tracking-tight leading-tight truncate">
+                  <h3 id="cardFullName" class="text-xl sm:text-2xl font-black text-amber-200 tracking-tight leading-tight truncate">
                     علي البدراني
                   </h3>
-                  <p class="text-xs sm:text-sm text-neutral-300 font-medium truncate mt-0.5">
+                  <p id="cardSubtitle" class="text-xs sm:text-sm text-neutral-300 font-medium truncate mt-0.5">
                     علي يعقوب حامد البدراني
                   </p>
                   <div class="flex items-center gap-2 mt-1.5 flex-wrap">
                     <span onclick="event.stopPropagation(); openBloodModal()" class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-red-950/80 border border-red-500/40 text-red-300 cursor-pointer">
-                      <span>❤️ فصيلة الدم O+</span>
+                      <span>❤️ فصيلة الدم <span id="cardBloodBadge">O+</span></span>
                     </span>
-                    <span class="text-[11px] text-neutral-400 font-mono" dir="ltr">
+                    <span id="cardPhoneBadge" class="text-[11px] text-neutral-400 font-mono" dir="ltr">
                       07729530556
                     </span>
                   </div>
@@ -182,18 +194,18 @@
 
                 <div class="col-span-7 bg-neutral-900/90 border border-neutral-800 rounded-xl p-3 text-right text-xs">
                   <div class="flex justify-between items-center text-[10px] text-neutral-400 border-b border-neutral-800 pb-1 mb-1.5">
-                    <span class="text-amber-300 font-bold">بطاقة علي البدراني</span>
+                    <span id="cardBackNameTitle" class="text-amber-300 font-bold">بطاقة علي البدراني</span>
                     <span class="font-mono text-emerald-400 text-[9px]">VERIFIED</span>
                   </div>
-                  <p class="text-[11px] text-neutral-200 truncate font-mono mb-1" dir="ltr">
+                  <p id="cardBackEmail" class="text-[11px] text-neutral-200 truncate font-mono mb-1" dir="ltr">
                     aliyakoophamedalbadran@gmail.com
                   </p>
-                  <p class="text-[11px] text-neutral-300 font-mono mb-1.5" dir="ltr">
+                  <p id="cardBackPhone" class="text-[11px] text-neutral-300 font-mono mb-1.5" dir="ltr">
                     07729530556
                   </p>
                   <div class="flex items-center gap-1 text-[10px] text-red-400 font-bold">
                     <span>فصيلة الدم:</span>
-                    <span class="px-1.5 py-0.2 rounded bg-red-500/20 border border-red-500/40 text-red-300 font-mono">
+                    <span id="cardBackBlood" class="px-1.5 py-0.2 rounded bg-red-500/20 border border-red-500/40 text-red-300 font-mono">
                       O+
                     </span>
                   </div>
@@ -241,6 +253,7 @@
           <!-- 1. Primary Phone -->
           <div class="relative group">
             <a
+              id="linkPhone1"
               href="tel:+9647729530556"
               class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-amber-500/30 hover:border-amber-400 hover:bg-neutral-800/90 transition-all duration-300 shadow-lg group hover:-translate-y-0.5"
             >
@@ -257,7 +270,7 @@
                       مباشر
                     </span>
                   </div>
-                  <span class="text-xs font-mono text-neutral-400 font-medium block mt-0.5" dir="ltr">
+                  <span id="textPhone1" class="text-xs font-mono text-neutral-400 font-medium block mt-0.5" dir="ltr">
                     07729530556
                   </span>
                 </div>
@@ -265,7 +278,7 @@
 
               <div class="flex items-center gap-2">
                 <button
-                  onclick="event.preventDefault(); event.stopPropagation(); copyText('07729530556', 'تم نسخ رقم الهاتف الرئيسي!')"
+                  onclick="event.preventDefault(); event.stopPropagation(); copyText(document.getElementById('textPhone1').textContent, 'تم نسخ رقم الهاتف الرئيسي!')"
                   class="p-2 rounded-lg bg-neutral-800 text-neutral-400 hover:text-amber-300 hover:bg-neutral-700 transition"
                   title="نسخ الرقم"
                 >
@@ -281,6 +294,7 @@
           <!-- 2. Secondary Phone -->
           <div class="relative group">
             <a
+              id="linkPhone2"
               href="tel:+9647756333616"
               class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-amber-500/20 hover:border-amber-400/60 hover:bg-neutral-800/90 transition-all duration-300 shadow-lg group hover:-translate-y-0.5"
             >
@@ -294,7 +308,7 @@
                       اتصال إضافي
                     </span>
                   </div>
-                  <span class="text-xs font-mono text-neutral-400 font-medium block mt-0.5" dir="ltr">
+                  <span id="textPhone2" class="text-xs font-mono text-neutral-400 font-medium block mt-0.5" dir="ltr">
                     07756333616
                   </span>
                 </div>
@@ -302,7 +316,7 @@
 
               <div class="flex items-center gap-2">
                 <button
-                  onclick="event.preventDefault(); event.stopPropagation(); copyText('07756333616', 'تم نسخ رقم الهاتف الإضافي!')"
+                  onclick="event.preventDefault(); event.stopPropagation(); copyText(document.getElementById('textPhone2').textContent, 'تم نسخ رقم الهاتف الإضافي!')"
                   class="p-2 rounded-lg bg-neutral-800 text-neutral-400 hover:text-amber-300 hover:bg-neutral-700 transition"
                   title="نسخ الرقم"
                 >
@@ -318,6 +332,7 @@
           <!-- 3. WhatsApp Direct -->
           <div class="relative group">
             <a
+              id="linkWhatsapp"
               href="https://wa.me/9647729530556"
               target="_blank"
               rel="noopener noreferrer"
@@ -354,6 +369,7 @@
           <!-- 4. Facebook Profile -->
           <div class="relative group">
             <a
+              id="linkFacebook"
               href="https://www.facebook.com/share/1EwWQCovnA/"
               target="_blank"
               rel="noopener noreferrer"
@@ -389,6 +405,7 @@
           <!-- 5. Email Contact -->
           <div class="relative group">
             <a
+              id="linkEmail"
               href="mailto:aliyakoophamedalbadran@gmail.com"
               class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-rose-500/30 hover:border-rose-400 hover:bg-rose-950/30 transition-all duration-300 shadow-lg group hover:-translate-y-0.5"
             >
@@ -402,7 +419,7 @@
                       البريد الإلكتروني
                     </span>
                   </div>
-                  <span class="text-xs font-mono text-neutral-400 font-medium block mt-0.5 truncate max-w-[200px]" dir="ltr">
+                  <span id="textEmail" class="text-xs font-mono text-neutral-400 font-medium block mt-0.5 truncate max-w-[200px]" dir="ltr">
                     aliyakoophamedalbadran@gmail.com
                   </span>
                 </div>
@@ -410,7 +427,7 @@
 
               <div class="flex items-center gap-2">
                 <button
-                  onclick="event.preventDefault(); event.stopPropagation(); copyText('aliyakoophamedalbadran@gmail.com', 'تم نسخ البريد الإلكتروني!')"
+                  onclick="event.preventDefault(); event.stopPropagation(); copyText(document.getElementById('textEmail').textContent, 'تم نسخ البريد الإلكتروني!')"
                   class="p-2 rounded-lg bg-neutral-800 text-neutral-400 hover:text-rose-300 hover:bg-neutral-700 transition"
                   title="نسخ البريد"
                 >
@@ -437,6 +454,65 @@
         </footer>
 
     </main>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+      <div class="relative w-full max-w-md rounded-2xl bg-[#121218] border border-amber-500/40 p-6 shadow-2xl text-right text-neutral-100 flex flex-col my-auto">
+        <button onclick="closeEditModal()" class="absolute top-4 left-4 p-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-neutral-200">
+          ✕
+        </button>
+        <h3 class="text-lg font-black text-amber-300 mb-1">تعديل بيانات البطاقة</h3>
+        <p class="text-xs text-neutral-400 mb-4">قم بتعديل المعلومات أدناه ثم اضغط حفظ لتحديث البطاقة فوراً</p>
+
+        <div class="flex flex-col gap-3.5 max-h-[60vh] overflow-y-auto pl-1">
+          <div>
+            <label class="text-xs font-bold text-neutral-300 block mb-1">الاسم الرئيسي:</label>
+            <input id="inputFullName" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" />
+          </div>
+          <div>
+            <label class="text-xs font-bold text-neutral-300 block mb-1">الاسم الكامل (الفرعي):</label>
+            <input id="inputSubtitle" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" />
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="text-xs font-bold text-neutral-300 block mb-1">رقم الهاتف الرئيسي:</label>
+              <input id="inputPhone1" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" dir="ltr" />
+            </div>
+            <div>
+              <label class="text-xs font-bold text-neutral-300 block mb-1">رقم الهاتف الإضافي:</label>
+              <input id="inputPhone2" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" dir="ltr" />
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-neutral-300 block mb-1">البريد الإلكتروني:</label>
+            <input id="inputEmail" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" dir="ltr" />
+          </div>
+          <div>
+            <label class="text-xs font-bold text-neutral-300 block mb-1">رابط فيسبوك:</label>
+            <input id="inputFacebook" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" dir="ltr" />
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="text-xs font-bold text-neutral-300 block mb-1">فصيلة الدم:</label>
+              <input id="inputBlood" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" />
+            </div>
+            <div>
+              <label class="text-xs font-bold text-neutral-300 block mb-1">رابط الصورة الشخصية:</label>
+              <input id="inputAvatar" type="text" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:border-amber-400 outline-none" dir="ltr" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 mt-5 pt-3 border-t border-neutral-800">
+          <button onclick="saveEditData()" class="flex-1 py-2.5 rounded-xl bg-amber-400 text-black font-black text-xs shadow-lg">
+            حفظ وتحديث البطاقة
+          </button>
+          <button onclick="resetEditData()" class="py-2.5 px-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-300 text-xs font-bold">
+            استعادة الافتراضي
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- QR Code Modal -->
     <div id="qrModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
@@ -488,7 +564,7 @@
           🩸
         </div>
         <h3 class="text-lg font-black text-red-300 mb-1">فصيلة الدم الطارئة</h3>
-        <p class="text-2xl font-black text-white font-mono bg-red-950/80 border border-red-500/40 py-1.5 px-6 rounded-xl my-2">
+        <p id="bloodModalVal" class="text-2xl font-black text-white font-mono bg-red-950/80 border border-red-500/40 py-1.5 px-6 rounded-xl my-2">
           O+
         </p>
         <p class="text-xs text-neutral-300 leading-relaxed mt-2">
@@ -505,6 +581,96 @@
 
     <script>
       let isFlipped = false;
+
+      const defaultData = {
+        fullName: "علي البدراني",
+        subtitle: "علي يعقوب حامد البدراني",
+        phone1: "07729530556",
+        phone2: "07756333616",
+        email: "aliyakoophamedalbadran@gmail.com",
+        facebook: "https://www.facebook.com/share/1EwWQCovnA/",
+        blood: "O+",
+        avatar: "./1786805937667.png"
+      };
+
+      function getCardData() {
+        try {
+          const saved = localStorage.getItem('ali_card_data');
+          if (saved) return JSON.parse(saved);
+        } catch(e) {}
+        return defaultData;
+      }
+
+      function updateUI(data) {
+        document.getElementById('cardFullName').textContent = data.fullName;
+        document.getElementById('cardSubtitle').textContent = data.subtitle;
+        document.getElementById('cardBloodBadge').textContent = data.blood;
+        document.getElementById('cardPhoneBadge').textContent = data.phone1;
+        document.getElementById('cardBackNameTitle').textContent = "بطاقة " + data.fullName;
+        document.getElementById('cardBackEmail').textContent = data.email;
+        document.getElementById('cardBackPhone').textContent = data.phone1;
+        document.getElementById('cardBackBlood').textContent = data.blood;
+        document.getElementById('bloodModalVal').textContent = data.blood;
+        document.getElementById('cardAvatarImg').src = data.avatar;
+
+        document.getElementById('textPhone1').textContent = data.phone1;
+        document.getElementById('linkPhone1').href = "tel:+" + data.phone1.replace(/\D/g, '');
+
+        document.getElementById('textPhone2').textContent = data.phone2;
+        document.getElementById('linkPhone2').href = "tel:+" + data.phone2.replace(/\D/g, '');
+
+        document.getElementById('linkWhatsapp').href = "https://wa.me/" + data.phone1.replace(/\D/g, '');
+        document.getElementById('linkFacebook').href = data.facebook;
+
+        document.getElementById('textEmail').textContent = data.email;
+        document.getElementById('linkEmail').href = "mailto:" + data.email;
+      }
+
+      function openEditModal() {
+        const data = getCardData();
+        document.getElementById('inputFullName').value = data.fullName;
+        document.getElementById('inputSubtitle').value = data.subtitle;
+        document.getElementById('inputPhone1').value = data.phone1;
+        document.getElementById('inputPhone2').value = data.phone2;
+        document.getElementById('inputEmail').value = data.email;
+        document.getElementById('inputFacebook').value = data.facebook;
+        document.getElementById('inputBlood').value = data.blood;
+        document.getElementById('inputAvatar').value = data.avatar;
+
+        const modal = document.getElementById('editModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeEditModal() {
+        const modal = document.getElementById('editModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      function saveEditData() {
+        const newData = {
+          fullName: document.getElementById('inputFullName').value || defaultData.fullName,
+          subtitle: document.getElementById('inputSubtitle').value || defaultData.subtitle,
+          phone1: document.getElementById('inputPhone1').value || defaultData.phone1,
+          phone2: document.getElementById('inputPhone2').value || defaultData.phone2,
+          email: document.getElementById('inputEmail').value || defaultData.email,
+          facebook: document.getElementById('inputFacebook').value || defaultData.facebook,
+          blood: document.getElementById('inputBlood').value || defaultData.blood,
+          avatar: document.getElementById('inputAvatar').value || defaultData.avatar
+        };
+        localStorage.setItem('ali_card_data', JSON.stringify(newData));
+        updateUI(newData);
+        closeEditModal();
+        showToast('تم تحديث وحفظ بيانات البطاقة بنجاح!');
+      }
+
+      function resetEditData() {
+        localStorage.removeItem('ali_card_data');
+        updateUI(defaultData);
+        closeEditModal();
+        showToast('تمت استعادة الإعدادات الافتراضية');
+      }
       
       function getResolvedTargetUrl() {
         if (window.location && window.location.protocol.startsWith('http') && !window.location.hostname.includes('run.app')) {
@@ -567,7 +733,8 @@
         if (window.confetti) {
           confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 }, colors: ['#d4af37', '#fcf6ba', '#ffffff', '#22c55e'] });
         }
-        const vcard = "BEGIN:VCARD\r\nVERSION:3.0\r\nN;CHARSET=UTF-8:علي البدراني;;;;\r\nFN;CHARSET=UTF-8:علي البدراني\r\nTITLE;CHARSET=UTF-8:علي يعقوب حامد البدراني\r\nTEL;TYPE=CELL,VOICE,PREF:+9647729530556\r\nTEL;TYPE=CELL,VOICE:+9647756333616\r\nEMAIL;TYPE=INTERNET,PREF:aliyakoophamedalbadran@gmail.com\r\nNOTE;CHARSET=UTF-8:فصيلة الدم: O+\r\nEND:VCARD";
+        const data = getCardData();
+        const vcard = `BEGIN:VCARD\r\nVERSION:3.0\r\nN;CHARSET=UTF-8:${data.fullName};;;;\r\nFN;CHARSET=UTF-8:${data.fullName}\r\nTITLE;CHARSET=UTF-8:${data.subtitle}\r\nTEL;TYPE=CELL,VOICE,PREF:+${data.phone1.replace(/\D/g, '')}\r\nTEL;TYPE=CELL,VOICE:+${data.phone2.replace(/\D/g, '')}\r\nEMAIL;TYPE=INTERNET,PREF:${data.email}\r\nNOTE;CHARSET=UTF-8:فصيلة الدم: ${data.blood}\r\nEND:VCARD`;
         const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
@@ -581,10 +748,11 @@
       }
 
       function shareCard() {
+        const data = getCardData();
         if (navigator.share) {
           navigator.share({
-            title: 'علي البدراني | بطاقة ذكية',
-            text: 'البطاقة التعريفية الرقمية للسيد علي البدراني - فئة الدم: O+',
+            title: data.fullName + ' | بطاقة ذكية',
+            text: 'البطاقة التعريفية الرقمية للسيد ' + data.fullName + ' - فئة الدم: ' + data.blood,
             url: targetLink
           }).catch(() => {});
         } else {
@@ -608,6 +776,7 @@
       }
 
       window.addEventListener('DOMContentLoaded', () => {
+        updateUI(getCardData());
         const backQR = document.getElementById('cardBackQRImg');
         if (backQR) backQR.src = qrApiUrl;
       });
